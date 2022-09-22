@@ -1,3 +1,6 @@
+///Martha Raquel Reyes Ramos 20183000162 
+//BBDD2
+
 CREATE DATABASE Tarea1;
 
 USE Tarea1;
