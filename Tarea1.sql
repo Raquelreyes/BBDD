@@ -52,7 +52,7 @@ Codigo_Hotel VARCHAR(5) NOT NULL,
 DNI VARCHAR(13) NOT NULL,
 Fecha_Entrada DATE NOT NULL,
 Fecha_Salida DATE NOT NULL,
-Cantidad_Personas INTEGER
+Cantidad_Personas INTEGER DEFAULT 0
 );
 
 ALTER TABLE Hotel_Client ADD CONSTRAINT pk_CodH_DNI 
@@ -73,3 +73,4 @@ ALTER TABLE Aerolinea ADD CONSTRAINT ck_descuento CHECK (Decuento >= 10);
 
 INSERT  INTO Aerolinea Values (000158,5);
 INSERT  INTO Aerolinea Values (000158,12);
+
