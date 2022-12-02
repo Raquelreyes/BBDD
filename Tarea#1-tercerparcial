@@ -1,0 +1,48 @@
+Martha Raquel Reyes Ramos
+20183000162 
+
+---ejercicio#1
+
+SELECT 
+name, 
+gender, 
+number, 
+SUM(number) OVER (PARTITION BY gender) as sumatoria 
+FROM `bigquery-public-data.usa_names.usa_1910_2013` 
+ORDER BY  number DESC;
+
+---ejercicio#2
+
+SELECT date, 
+state, 
+tests_total, 
+cases_positive_total, 
+SUM(tests_total) OVER(PARTITION BY state) as suma_x_estado 
+FROM `bigquery-public-data.covid19_covidtracking.summary`;
+
+----ejercicio#3
+
+Select 
+channelGrouping,
+SUM(Paginas_Vista) OVER W1 AS PageViews,
+avg(Paginas_Vista) OVER() AS Promedio
+from(
+SELECT
+channelGrouping,date,
+sum(totals.pageviews) as Paginas_Vista,
+
+FROM `bigquery-public-data.google_analytics_sample.ga_sessions_20170801`
+group by channelGrouping,date
+)
+WINDOW w1 as (partition by channelGrouping)
+ORDER BY Paginas_Vista DESC
+
+-----ejercicio#4
+
+SELECT 
+region,
+country,
+SUM(Total_Revenue) OVER(PARTITION BY country) as Ganancias_Total_revenue,
+DENSE_RANK() OVER (PARTITION BY region  ORDER BY Total_Revenue DESC) AS rank,
+FROM dataset.records
+ORDER BY region  ASC;
